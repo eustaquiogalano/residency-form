@@ -1,0 +1,25 @@
+# Build and coverage outputs
+build
+dist
+coverage
+
+# Dependency directories
+node_modules
+
+# Logs
+*.log
+
+# Version control
+.git
+
+# Prettier itself shouldn't format its config files
+.prettierignore
+.prettierrc
+.prettierrc.json
+
+# IDE/Editor folders
+.vscode
+
+# Misc
+package-lock.json
+
