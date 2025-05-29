@@ -12,6 +12,14 @@ function attachValidation() {
   document
     .querySelector('#country')
     .addEventListener('input', validator.countryValidator.validateCountry);
+
+  // Get a reference for postal code input and put input event
+  document
+    .querySelector('#postal-code')
+    .addEventListener(
+      'input',
+      validator.postalCodeValidator.postalCodeValidate
+    );
 }
 
 export { attachValidation };
