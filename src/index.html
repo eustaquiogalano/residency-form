@@ -36,11 +36,14 @@
           <label for="postal-code">Postal Code:</label>
           <br />
           <input
-            type="number"
+            type="text"
+            inputmode="numeric"
             name="postal-code"
             id="postal-code"
             class="residency-input"
             required
+            maxlength="4"
+            pattern="\d{4}"
           />
         </div>
         <div>
