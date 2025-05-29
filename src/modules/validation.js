@@ -1,5 +1,6 @@
 const emailInput = document.querySelector('#mail');
 const countryInput = document.querySelector('#country');
+const postalCodeInput = document.querySelector('#postal-code');
 
 function validateInputs() {
   // This object contains a validator for email input
@@ -48,7 +49,33 @@ function validateInputs() {
     },
   };
 
-  return { emailValidator, countryValidator };
+  // THis object contains a validator for postal code input
+  const postalCodeValidator = {
+    postalCodeValidate() {
+      // Reset previous error message
+      postalCodeInput.setCustomValidity('');
+
+      if (postalCodeInput.validity.valueMissing) {
+        // If postal code input is empty
+        // set this as error message
+        postalCodeInput.setCustomValidity(
+          'Please fill out with valid postal code'
+        );
+      } else if (!/^\d{4}$/.test(postalCodeInput.value)) {
+        // If postal code input is not a 4 digit value
+        // set this as error message
+        postalCodeInput.setCustomValidity('Enter a valid postal code');
+      } else {
+        // If value is valid good to go
+        postalCodeInput.setCustomValidity('');
+      }
+
+      // Then report the custom error message
+      postalCodeInput.reportValidity();
+    },
+  };
+
+  return { emailValidator, countryValidator, postalCodeValidator };
 }
 
 export { validateInputs };
