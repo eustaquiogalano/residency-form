@@ -2,6 +2,7 @@ const emailInput = document.querySelector('#mail');
 const countryInput = document.querySelector('#country');
 const postalCodeInput = document.querySelector('#postal-code');
 const passwordInput = document.querySelector('#password');
+const confirmPasswordInput = document.querySelector('#password-confirmation');
 
 function validateInputs() {
   // This object contains a validator for email input
@@ -114,6 +115,30 @@ function validateInputs() {
 
       // Then report the error message
       passwordInput.reportValidity();
+    },
+
+    validateConfirmPassword() {
+      // Reset previous error message
+      confirmPasswordInput.setCustomValidity('');
+
+      // Validate the password confirmation input
+      if (confirmPasswordInput.validity.valueMissing) {
+        // if input is empty
+        // set this error message
+        confirmPasswordInput.setCustomValidity(
+          'Please enter a matching password'
+        );
+      } else if (!(passwordInput.value === confirmPasswordInput.value)) {
+        // if input does not match
+        // set this error message
+        confirmPasswordInput.setCustomValidity('Password does not match');
+      } else {
+        // if all is good
+        confirmPasswordInput.setCustomValidity('');
+      }
+
+      // Then report the error
+      confirmPasswordInput.reportValidity();
     },
   };
 
