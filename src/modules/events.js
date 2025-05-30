@@ -20,6 +20,10 @@ function attachValidation() {
       'input',
       validator.postalCodeValidator.postalCodeValidate
     );
+
+  document
+    .querySelector('#password')
+    .addEventListener('input', validator.passwordValidator.validatePassword);
 }
 
 export { attachValidation };
