@@ -24,6 +24,13 @@ function attachValidation() {
   document
     .querySelector('#password')
     .addEventListener('input', validator.passwordValidator.validatePassword);
+
+  document
+    .querySelector('#password-confirmation')
+    .addEventListener(
+      'input',
+      validator.passwordValidator.validateConfirmPassword
+    );
 }
 
 export { attachValidation };
