@@ -1,6 +1,7 @@
 const emailInput = document.querySelector('#mail');
 const countryInput = document.querySelector('#country');
 const postalCodeInput = document.querySelector('#postal-code');
+const passwordInput = document.querySelector('#password');
 
 function validateInputs() {
   // This object contains a validator for email input
@@ -75,7 +76,53 @@ function validateInputs() {
     },
   };
 
-  return { emailValidator, countryValidator, postalCodeValidator };
+  // THis object contains a validator for password input
+  const passwordValidator = {
+    validatePassword() {
+      // password must at least contain:
+      // 1 special character
+      // 1 number
+      // 1 uppercase letter
+      const regexPattern =
+        /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])/;
+
+      // Reset precious error message
+      passwordInput.setCustomValidity('');
+
+      // Validate the input
+      if (passwordInput.validity.valueMissing) {
+        // if input is empty
+        // set this error message
+        passwordInput.setCustomValidity('Please fill out with a password');
+      } else if (passwordInput.validity.tooShort) {
+        // if input has less than 8 characters
+        // set this error message
+        passwordInput.setCustomValidity('Password is too short');
+      } else if (!regexPattern.test(passwordInput.value)) {
+        // if input has no
+        // 1 special character
+        // 1 number
+        // 1 uppercase letter
+        // set this error message
+        passwordInput.setCustomValidity(
+          'At least: 1 uppercase letter, 1 special character, 1 number'
+        );
+      } else {
+        // if input is all good
+        passwordInput.setCustomValidity('');
+      }
+
+      // Then report the error message
+      passwordInput.reportValidity();
+    },
+  };
+
+  return {
+    emailValidator,
+    countryValidator,
+    postalCodeValidator,
+    passwordValidator,
+  };
 }
 
 export { validateInputs };
