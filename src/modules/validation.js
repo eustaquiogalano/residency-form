@@ -3,6 +3,7 @@ const countryInput = document.querySelector('#country');
 const postalCodeInput = document.querySelector('#postal-code');
 const passwordInput = document.querySelector('#password');
 const confirmPasswordInput = document.querySelector('#password-confirmation');
+const residencyForm = document.querySelector('#residency-form');
 
 function validateInputs() {
   // This object contains a validator for email input
@@ -77,7 +78,7 @@ function validateInputs() {
     },
   };
 
-  // THis object contains a validator for password input
+  // This object contains a validator for password input
   const passwordValidator = {
     validatePassword() {
       // password must at least contain:
@@ -142,11 +143,39 @@ function validateInputs() {
     },
   };
 
+  // This ob ject contains a form validation and submission method
+  const submitButton = {
+    submitForm(event) {
+      // For practice purposes, no need for submission
+      event.preventDefault();
+
+      // validate the form
+      if (residencyForm.checkValidity()) {
+        // If every input are valid inform the user
+        console.log('High Five everything is all good');
+
+        // And reset all the input
+        emailInput.value = '';
+        countryInput.value = '';
+        postalCodeInput.value = '';
+        passwordInput.value = '';
+        confirmPasswordInput.value = '';
+      } else {
+        // if not then inform the user
+        console.log('Check your inputs');
+
+        // and report the invalid input element
+        residencyForm.reportValidity();
+      }
+    },
+  };
+
   return {
     emailValidator,
     countryValidator,
     postalCodeValidator,
     passwordValidator,
+    submitButton,
   };
 }
 
