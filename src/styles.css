@@ -42,6 +42,19 @@ main {
       border: none;
     }
 
+    input:invalid {
+      border: 2px solid rgb(255, 126, 126);
+    }
+
+    input:valid {
+      border: 2px solid rgb(56, 158, 56);
+    }
+
+    input:focus {
+      outline: 1px solid black;
+      outline-offset: -3px;
+    }
+
     #submit-button {
       height: 50px;
       width: 100%;
